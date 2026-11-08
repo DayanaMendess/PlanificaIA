@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102c3b">
+<meta name="description" content="PlanificaIA organiza tareas académicas, conserva su historial y recomienda por dónde empezar.">
+<title>PlanificaIA · Organiza tu semana</title>
+<style>
+:root{color-scheme:light;--ink:#18313c;--muted:#667b82;--line:#e1e9e6;--paper:#fff;--canvas:#f4f7f4;--deep:#102c3b;--teal:#167a71;--mint:#e4f3ed;--coral:#c86b4e;--gold:#d8a447;--shadow:0 18px 50px #1736320b;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--canvas);font-synthesis:none;text-rendering:optimizeLegibility}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 85% -10%,#e2efe8 0,transparent 35%),var(--canvas)}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #78bfb2;outline-offset:2px}.app{max-width:1180px;margin:0 auto;padding:34px 28px 54px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:44px;height:44px;background:var(--deep);color:white;border-radius:14px;font-weight:800;font-size:20px;box-shadow:0 6px 14px #102c3b20}.brand-name{font-weight:800;letter-spacing:-.03em;font-size:20px}.brand-sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.11em;text-transform:uppercase}.top-actions{display:flex;gap:8px;align-items:center}.ghost,.icon-button{background:var(--paper);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:650}.ghost:hover,.icon-button:hover{border-color:#aac9c0;background:#fafffc}.hero{display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;margin:0 0 25px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:var(--teal);margin-bottom:10px}.hero h1{font-size:clamp(30px,4vw,46px);letter-spacing:-.055em;line-height:1.03;margin:0;color:var(--deep)}.hero p{margin:12px 0 0;color:var(--muted);max-width:570px;line-height:1.65;font-size:14px}.week-label{background:#e7f1ec;border:1px solid #d4e5dd;color:#366458;padding:10px 13px;border-radius:12px;font-size:12px;font-weight:700;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}.stat{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:16px 18px;box-shadow:var(--shadow)}.stat-label{font-size:12px;color:var(--muted);font-weight:600}.stat-value{font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.04em;color:var(--deep);margin-top:7px}.stat-hint{font-size:11px;color:#809096;margin-top:4px}.layout{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(290px,.82fr);gap:16px;align-items:start}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:var(--shadow)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel-head h2{font-size:17px;letter-spacing:-.025em;margin:0;color:var(--deep)}.section-kicker{font-size:11px;color:var(--muted);margin-top:4px}.badge{border-radius:99px;padding:6px 9px;font-size:11px;font-weight:750;background:var(--mint);color:#24705e}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#546a70;font-weight:750}.field input,.field select,.field textarea,.search{width:100%;border:1px solid #dce6e2;background:#fbfdfc;color:var(--ink);padding:11px 12px;border-radius:10px;font-size:13px}.field textarea{resize:vertical;min-height:76px}.form-actions{grid-column:1/-1;display:flex;gap:8px;align-items:center;margin-top:3px}.primary{background:var(--teal);border:1px solid var(--teal);color:white;padding:11px 15px;border-radius:10px;font-weight:750;font-size:13px}.primary:hover{background:#11685f}.secondary{background:#f0f6f3;border:1px solid #dce9e3;color:#285b52;padding:10px 13px;border-radius:10px;font-size:12px;font-weight:700}.secondary:hover{background:#e7f2ec}.danger{background:#fff4f0;border-color:#f2d9ce;color:#a34d34}.danger:hover{background:#ffebe3}.filters{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:21px 0 11px}.tab{background:transparent;border:1px solid transparent;border-radius:9px;padding:8px 11px;font-size:12px;color:#697d81;font-weight:700}.tab.active{background:#e6f1ec;color:#226a5d;border-color:#d5e8df}.search{margin-left:auto;width:min(220px,100%);padding:9px 11px}.task-list{display:grid;gap:9px}.task{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:11px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff;transition:border-color .15s,transform .15s}.task:hover{border-color:#b9d5ca;transform:translateY(-1px)}.task.is-done{background:#f8fbf9}.check{appearance:none;width:19px;height:19px;margin:1px 0 0;border:1.5px solid #aebfba;border-radius:6px;cursor:pointer;display:grid;place-items:center}.check:checked{background:var(--teal);border-color:var(--teal)}.check:checked:after{content:"✓";color:#fff;font-size:13px;font-weight:900}.task-title{font-size:13px;line-height:1.45;font-weight:750;color:var(--deep);overflow-wrap:anywhere}.is-done .task-title{text-decoration:line-through;color:#879590}.task-notes{font-size:11px;color:#74858a;margin-top:4px;line-height:1.45;white-space:pre-wrap}.task-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}.pill{display:inline-flex;align-items:center;border-radius:99px;padding:4px 8px;font-size:10px;font-weight:750;background:#edf2f0;color:#617274}.pill.high{background:#ffede6;color:#a75336}.pill.medium{background:#edf1fa;color:#56689a}.pill.low{background:#eaf5ed;color:#36754a}.pill.overdue{background:#fff0ed;color:#b54233}.pill.today{background:#fff6df;color:#8d6818}.task-actions{display:flex;gap:5px}.icon-button{width:31px;height:31px;padding:0;display:grid;place-items:center;font-size:13px;color:#5c7276}.empty{padding:34px 14px;text-align:center;border:1px dashed #cfddd7;border-radius:13px;color:#71827e}.empty-icon{font-size:23px;margin-bottom:8px}.empty strong{display:block;color:#35534c;font-size:13px;margin-bottom:4px}.empty span{font-size:11px}.right-col{display:grid;gap:14px}.progress-head{display:flex;justify-content:space-between;align-items:center}.progress-head strong{font-size:13px}.progress-number{font-size:12px;color:var(--teal);font-weight:800}.progress-track{height:8px;background:#edf2ef;border-radius:99px;overflow:hidden;margin:13px 0 8px}.progress-fill{height:100%;background:linear-gradient(90deg,#167a71,#60ad8c);border-radius:99px;transition:width .25s}.progress-caption{font-size:11px;color:var(--muted);line-height:1.5}.tip-row{display:flex;gap:11px;align-items:flex-start}.tip-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;background:#fff4dd;border-radius:11px}.tip-row strong{font-size:12px;display:block;color:var(--deep);margin:1px 0 4px}.tip-row p{font-size:11px;color:var(--muted);line-height:1.55;margin:0}.footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px;color:#7a8988;font-size:10px;line-height:1.5}.toast{position:fixed;right:20px;bottom:20px;z-index:5;background:var(--deep);color:white;padding:12px 15px;border-radius:12px;box-shadow:0 12px 30px #1232;font-size:12px;max-width:min(380px,calc(100vw - 40px))}.toast[hidden]{display:none}.modal-backdrop{position:fixed;inset:0;z-index:10;background:#102c3bb3;display:grid;place-items:center;padding:20px}.modal-backdrop[hidden]{display:none}.modal{background:#fff;width:min(470px,100%);border-radius:17px;padding:22px;box-shadow:0 20px 70px #102c3b55}.modal h2{font-size:18px;margin:0 0 6px;color:var(--deep)}.modal p{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 15px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.right-col{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:580px){.app{padding:22px 15px 35px}.topbar{margin-bottom:25px}.top-actions .ghost{padding:8px 9px;font-size:11px}.brand-name{font-size:18px}.hero{grid-template-columns:1fr;gap:12px}.week-label{justify-self:start}.panel{padding:16px}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:22px}.right-col{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full,.form-actions{grid-column:auto}.filters{gap:3px}.tab{padding:7px 8px}.search{order:2;margin:5px 0 0;width:100%;flex:1 0 100%}.task{grid-template-columns:20px minmax(0,1fr) auto;padding:12px 10px}.task-actions{flex-direction:column}.footer{align-items:flex-start;flex-direction:column}}
+</style>
+<style>
+.chat-panel{margin-bottom:17px}.chat-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.voice-toggle{display:flex;gap:8px;align-items:center;color:#627a7a;font-size:11px;font-weight:650;white-space:nowrap}.voice-toggle input{accent-color:var(--teal)}.badge-error{background:#fff0ec;color:#a34d34}.chat-log{height:168px;overflow:auto;border:1px solid #e4ece7;border-radius:13px;padding:12px;margin:14px 0 10px;background:linear-gradient(135deg,#f8fbf9,#f4f8f7);display:flex;flex-direction:column;gap:8px}.chat-message{max-width:88%;padding:9px 12px;border-radius:13px;line-height:1.5;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.chat-message.user{align-self:flex-end;background:var(--deep);color:white;border-bottom-right-radius:4px}.chat-message.agent{align-self:flex-start;background:white;border:1px solid #e4ece7;border-bottom-left-radius:4px}.chat-message.error{background:#fff4f0;border-color:#f2d9ce;color:#9a4f37}.chat-message.wait{color:var(--muted);font-style:italic}.action-chip{display:block;margin-top:7px;padding:5px 8px;border-radius:8px;background:#e5f3ec;color:#27634f;font-size:10px;font-weight:750}.action-chip.mod{background:#edf1fa;color:#4a6093}.chat-controls{display:flex;gap:8px}.chat-controls input{flex:1;min-width:0;border:1px solid #dce6e2;background:#fbfdfc;color:var(--ink);padding:11px 12px;border-radius:10px;font-size:13px}.mic-button{width:42px;flex:0 0 42px;padding:0;display:grid;place-items:center;background:#edf5f1;color:#276d62;border-color:#d6e6df}.mic-button svg{width:19px;height:19px}.mic-button.listening{background:#c75046;border-color:#c75046;color:#fff;animation:pulse 1.1s infinite}@keyframes pulse{50%{box-shadow:0 0 0 6px #c7504633}}.mic-note{font-size:10px;color:#758883;min-height:15px;margin-top:6px}.chat-suggestions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.chat-suggestions button{font-size:10px;padding:6px 9px}.calendar-tools{display:flex;align-items:center;gap:7px}.calendar-tools strong{font-size:12px;color:var(--deep);min-width:118px;text-align:center;text-transform:capitalize}.calendar-arrow{width:28px;height:28px;padding:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;color:#516b69;font-size:15px}.calendar-legend{display:flex;gap:12px;flex-wrap:wrap;margin:-5px 0 12px;font-size:9px;color:#778781}.legend-item{display:flex;align-items:center;gap:5px}.legend-dot{width:7px;height:7px;border-radius:50%;background:#2e8b71}.legend-dot.red{background:#d05248}.legend-dot.gold{background:#d69c37}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.calendar-weekday{text-align:center;font-size:9px;font-weight:750;color:#81918b;padding:5px 0}.calendar-day{min-height:50px;border:1px solid transparent;background:#f8faf8;border-radius:9px;padding:5px 4px;text-align:left;color:var(--ink);position:relative;overflow:hidden}.calendar-day:hover{border-color:#bad4c9;background:#f1f8f4}.calendar-day.other{opacity:.42;background:#fbfcfb}.calendar-day.today{border-color:#398b79;background:#edf7f2}.calendar-day.selected{box-shadow:inset 0 0 0 1px var(--teal);background:#e9f5ef}.calendar-day.has-overdue{background:#fff1ee;border-color:#f3d0c8}.calendar-day .day-number{font-size:10px;font-weight:750;display:block}.calendar-day.has-overdue .day-number{color:#b8483e}.calendar-count{display:inline-flex;align-items:center;justify-content:center;min-width:15px;height:15px;margin-top:3px;border-radius:99px;background:#e0f0e7;color:#2e715c;font-size:8px;font-weight:800;padding:0 4px}.calendar-day.has-overdue .calendar-count{background:#d6534b;color:white}.calendar-day.today .calendar-count{background:#dcefe7}.calendar-agenda{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}.agenda-heading{font-size:10px;font-weight:800;color:#536c68;margin-bottom:7px}.agenda-empty{font-size:10px;color:#85938e}.agenda-task{display:flex;align-items:center;gap:7px;margin:5px 0;font-size:10px;color:#405b55}.agenda-task .legend-dot{flex:0 0 7px}.agenda-task.overdue{color:#b8483e}.calendar-panel{padding:17px}
+@media(max-width:580px){.chat-top{flex-direction:column}.voice-toggle{white-space:normal}.chat-log{height:155px}.chat-message{max-width:96%}.calendar-day{min-height:44px;padding:4px 3px}.calendar-grid{gap:3px}.calendar-tools strong{min-width:102px}.calendar-legend{gap:8px}.calendar-legend span{font-size:8px}}
+</style>
+
+<style>
+#pdf-report{display:none}
+@media print{
+  @page{size:A4;margin:16mm}
+  html,body{background:#fff!important;color:#18313c!important}
+  body *{visibility:hidden!important}
+  #pdf-report,#pdf-report *{visibility:visible!important}
+  #pdf-report{display:block!important;position:absolute;inset:0 auto auto 0;width:100%;font-family:Arial,sans-serif;color:#18313c;background:#fff}
+  .pdf-header{border-bottom:2px solid #167a71;padding:0 0 16px;margin-bottom:16px}
+  .pdf-brand{font-weight:800;font-size:15px;letter-spacing:.08em;color:#102c3b}.pdf-brand span{color:#167a71}
+  .pdf-header>p{font-size:8px;letter-spacing:.15em;color:#667b82;margin:4px 0 20px}
+  .pdf-header h1{font-size:22px;letter-spacing:-.03em;margin:0 0 6px;color:#102c3b}
+  .pdf-date{font-size:10px;color:#667b82;text-transform:capitalize}
+  .pdf-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0 20px}
+  .pdf-summary>div{border:1px solid #dfe9e4;border-radius:8px;padding:10px;background:#f6faf7}
+  .pdf-summary strong{display:block;font-size:19px;color:#167a71}.pdf-summary span{font-size:9px;color:#667b82}
+  .pdf-list{display:grid;gap:9px}.pdf-task{break-inside:avoid;border:1px solid #e1e9e6;border-left:3px solid #167a71;border-radius:7px;padding:10px 12px}
+  .pdf-task-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.pdf-task h2{font-size:12px;line-height:1.4;margin:0;color:#102c3b;overflow-wrap:anywhere}
+  .pdf-priority{font-size:8px;font-weight:bold;border-radius:20px;padding:4px 7px;background:#edf1fa;color:#56689a;white-space:nowrap}.pdf-priority.alta{background:#ffede6;color:#a75336}.pdf-priority.baja{background:#eaf5ed;color:#36754a}
+  .pdf-meta{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:7px;font-size:9px;color:#667b82}.pdf-meta b{color:#405b55}
+  .pdf-notes{white-space:pre-wrap;font-size:9px;line-height:1.45;color:#627579;margin:7px 0 0}
+  .pdf-empty{border:1px dashed #cddbd5;border-radius:8px;padding:25px;text-align:center;color:#526d64;font-size:12px}
+  .pdf-footer{border-top:1px solid #e1e9e6;margin-top:20px;padding-top:8px;font-size:8px;color:#83918d}
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo" aria-hidden="true">P</div><div><div class="brand-name">PlanificaIA</div><div class="brand-sub">Asistente académico · CORHUILA</div></div></div>
+    <div class="top-actions"><button class="ghost" id="export-btn" type="button" title="Imprimir o guardar como PDF las tareas pendientes">↓ Exportar PDF</button></div>
+  </header>
+  <section class="hero"><div><div class="eyebrow">Tu espacio de estudio</div><h1>Una semana más clara.</h1><p>Habla con tu agente, organiza las entregas y sigue tus avances desde un solo lugar.</p></div><div class="week-label" id="today-label">Tu plan académico</div></section>
+  <section class="panel chat-panel" aria-label="Chat con el agente IA">
+    <div class="chat-top"><div><div class="panel-head" style="margin-bottom:4px"><div><h2>Habla con tu agente</h2><div class="section-kicker">Dile qué tienes pendiente; el agente puede crear, ajustar o completar tareas contigo.</div></div><span class="badge" id="ai-status">Conectando…</span></div></div><label class="voice-toggle"><input id="speak" type="checkbox"> Leer mis respuestas en voz alta</label></div>
+    <div class="chat-log" id="chat-log" role="log" aria-live="polite"></div>
+    <div class="chat-controls"><button class="secondary mic-button" id="mic" type="button" aria-label="Dictar por voz" title="Dictar por voz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></button><input id="chat-input" maxlength="1000" autocomplete="off" placeholder="Ej.: Tengo el informe de redes para el viernes, es urgente" aria-label="Mensaje para el agente"><button class="primary" id="send" type="button">Enviar</button></div>
+    <div class="mic-note" id="mic-note" role="status"></div>
+    <div class="chat-suggestions"><button class="secondary" data-sug="Tengo un taller de bases de datos para el próximo lunes, prioridad media y una lectura de redes sin fecha" type="button">Probar: crear tareas</button><button class="secondary" data-sug="¿Qué debería hacer primero?" type="button">¿Qué hago primero?</button><button class="secondary" data-sug="Ya terminé la primera tarea de la lista" type="button">Completar una</button></div>
+  </section>
+  <section class="stats" aria-label="Resumen de tareas">
+    <article class="stat"><div class="stat-label">Por hacer</div><div class="stat-value" id="pending-stat">0</div><div class="stat-hint">pendientes activas</div></article>
+    <article class="stat"><div class="stat-label">Completadas</div><div class="stat-value" id="done-stat">0</div><div class="stat-hint">guardadas en tu historial</div></article>
+    <article class="stat"><div class="stat-label">Vencidas</div><div class="stat-value" id="overdue-stat">0</div><div class="stat-hint">requieren atención</div></article>
+    <article class="stat"><div class="stat-label">Avance total</div><div class="stat-value" id="rate-stat">0%</div><div class="stat-hint">de todas tus tareas</div></article>
+  </section>
+  <div class="layout">
+    <section class="panel" aria-labelledby="tasks-heading">
+      <div class="panel-head"><div><h2 id="tasks-heading">Tu tablero</h2><div class="section-kicker">Cada tarea completada queda en tu historial.</div></div><span class="badge" id="pending-badge">0 pendientes</span></div>
+      <form id="task-form" class="form-grid">
+        <div class="field full"><label for="title">Nombre de la tarea *</label><input id="title" maxlength="120" placeholder="Ej. Preparar exposición de biología" required></div>
+        <div class="field"><label for="due">Fecha límite</label><input id="due" type="date"></div>
+        <div class="field"><label for="priority">Prioridad</label><select id="priority"><option value="media">Media</option><option value="alta">Alta</option><option value="baja">Baja</option></select></div>
+        <div class="field"><label for="category">Materia o categoría</label><input id="category" maxlength="40" placeholder="Ej. Aplicaciones con IA"></div>
+        <div class="field"><label for="estimate">Tiempo estimado</label><select id="estimate"><option value="">Sin estimar</option><option value="15">15 minutos</option><option value="30">30 minutos</option><option value="60">1 hora</option><option value="90">1 hora y media</option><option value="120">2 horas</option></select></div>
+        <div class="field full"><label for="notes">Notas (opcional)</label><textarea id="notes" maxlength="400" placeholder="Detalles, materiales o pasos que no quieres olvidar"></textarea></div>
+        <div class="form-actions"><button class="primary" id="save-task" type="submit">＋ Agregar tarea</button><button class="secondary" id="cancel-edit" type="button" hidden>Cancelar edición</button><span class="section-kicker" id="form-feedback" role="status"></span></div>
+      </form>
+      <div class="filters" role="tablist" aria-label="Filtrar tareas"><button class="tab active" data-filter="pending" role="tab" aria-selected="true">Pendientes</button><button class="tab" data-filter="done" role="tab" aria-selected="false">Completadas</button><button class="tab" data-filter="all" role="tab" aria-selected="false">Todas</button><input class="search" id="search" type="search" placeholder="⌕  Buscar tarea..." aria-label="Buscar tarea"></div>
+      <div class="task-list" id="task-list" aria-live="polite"></div>
+      <div class="footer"><span>✓ Tareas guardadas en este navegador. Al usar el chat, se envían a Groq el mensaje y las tareas pendientes; la clave permanece en el servidor.</span><button class="secondary danger" id="clear-done" type="button" hidden>Borrar historial completado</button></div>
+    </section>
+    <aside class="right-col">
+      <section class="panel calendar-panel" aria-label="Calendario de tareas"><div class="panel-head"><div><h2>Calendario</h2><div class="section-kicker">Tus próximas fechas de entrega.</div></div><div class="calendar-tools"><button class="calendar-arrow" id="month-prev" type="button" aria-label="Mes anterior">‹</button><strong id="month-label"></strong><button class="calendar-arrow" id="month-next" type="button" aria-label="Mes siguiente">›</button></div></div><div class="calendar-legend"><span class="legend-item"><i class="legend-dot red"></i>Vencida</span><span class="legend-item"><i class="legend-dot gold"></i>Vence hoy</span><span class="legend-item"><i class="legend-dot"></i>Pendiente</span></div><div class="calendar-grid" id="calendar-grid"></div><div class="calendar-agenda" id="calendar-agenda"></div></section>
+      <section class="panel"><div class="progress-head"><strong>Tu progreso</strong><span class="progress-number" id="progress-number">0%</span></div><div class="progress-track" role="progressbar" id="progress-bar" aria-label="Avance de tareas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div><div class="progress-caption" id="progress-caption">Agrega una tarea para comenzar a seguir tu avance.</div></section>
+      <section class="panel"><div class="tip-row"><div class="tip-icon" aria-hidden="true">✦</div><div><strong>¿Cómo decide el agente?</strong><p>Primero identifica tareas vencidas; después compara la fecha límite y usa la prioridad como desempate. Cada sugerencia muestra las razones, para que tú decidas.</p></div></div></section>
+    </aside>
+  </div>
+</main>
+<section id="pdf-report" aria-label="Informe de tareas pendientes"></section>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="modal-backdrop" id="confirm-modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><h2 id="modal-title">¿Borrar las tareas completadas?</h2><p>Se quitarán del historial de este navegador y esta acción no se puede deshacer.</p><div class="modal-actions"><button class="secondary" id="keep-done" type="button">Conservar</button><button class="primary danger" id="confirm-clear" type="button">Sí, borrar historial</button></div></section></div>
+<script>
+(() => {
+  'use strict';
+  const KEY = 'planificaia.tasks.v2';
+  const OLD_KEY = 'planificaia.tasks.v1';
+  const $ = (selector) => document.querySelector(selector);
+  const form = $('#task-form');
+  let tasks = [];
+  let filter = 'pending';
+  let editingId = null;
+  let toastTimer;
+  let calendarMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  let selectedDay = localDay();
+  const priorityRank = { alta: 1, media: 2, baja: 3 };
+  const priorityName = { alta: 'Alta', media: 'Media', baja: 'Baja' };
+
+  function localDay(date = new Date()) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  }
+  function makeId() {
+    return globalThis.crypto?.randomUUID ? crypto.randomUUID() : `t-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  }
+  function normalize(items) {
+    if (!Array.isArray(items)) return [];
+    return items.filter(item => item && typeof item.title === 'string').map(item => ({
+      id: String(item.id || makeId()), title: item.title.trim().slice(0, 120), due: /^\d{4}-\d{2}-\d{2}$/.test(item.due || '') ? item.due : '',
+      priority: priorityRank[item.priority] ? item.priority : 'media', category: String(item.category || '').slice(0, 40),
+      notes: String(item.notes || '').slice(0, 400), estimate: [15, 30, 60, 90, 120].includes(Number(item.estimate)) ? Number(item.estimate) : '',
+      done: Boolean(item.done), createdAt: item.createdAt || new Date().toISOString(), completedAt: item.completedAt || null
+    })).filter(item => item.title);
+  }
+  function load() {
+    try {
+      const current = localStorage.getItem(KEY);
+      if (current) return normalize(JSON.parse(current));
+      const old = localStorage.getItem(OLD_KEY);
+      if (old) { const migrated = normalize(JSON.parse(old)); localStorage.setItem(KEY, JSON.stringify(migrated)); return migrated; }
+    } catch { notify('No fue posible leer el almacenamiento local. Exporta tus datos si necesitas conservarlos.'); }
+    return [];
+  }
+  function save(showError = true) {
+    try { localStorage.setItem(KEY, JSON.stringify(tasks)); render(); return true; }
+    catch { if (showError) notify('El navegador no pudo guardar los cambios. Exporta tus datos y libera espacio.'); return false; }
+  }
+  function esc(text) { return String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); }
+  function prettyDate(value) { if (!value) return ''; const [y,m,d] = value.split('-').map(Number); return new Intl.DateTimeFormat('es-CO',{day:'numeric',month:'short',year:'numeric'}).format(new Date(y,m-1,d)); }
+  function ordered(list) {
+    const today = localDay();
+    return [...list].sort((a,b) => Number(Boolean(b.due && b.due < today)) - Number(Boolean(a.due && a.due < today)) ||
+      (a.due || '9999-12-31').localeCompare(b.due || '9999-12-31') || priorityRank[a.priority] - priorityRank[b.priority] || a.createdAt.localeCompare(b.createdAt));
+  }
+  function dayState(task) { const today = localDay(); if (!task.due || task.done) return ''; if (task.due < today) return 'overdue'; if (task.due === today) return 'today'; return ''; }
+  function notify(message) { const box = $('#toast'); box.textContent = message; box.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => box.hidden = true, 3000); }
+  function stats() {
+    const pending = tasks.filter(task => !task.done); const done = tasks.filter(task => task.done);
+    const overdue = pending.filter(task => task.due && task.due < localDay()).length;
+    const rate = tasks.length ? Math.round(done.length / tasks.length * 100) : 0;
+    $('#pending-stat').textContent = pending.length; $('#done-stat').textContent = done.length; $('#overdue-stat').textContent = overdue; $('#rate-stat').textContent = `${rate}%`;
+    $('#pending-badge').textContent = `${pending.length} pendiente${pending.length === 1 ? '' : 's'}`;
+    $('#progress-number').textContent = `${rate}%`; $('#progress-fill').style.width = `${rate}%`; $('#progress-bar').setAttribute('aria-valuenow', rate);
+    $('#progress-caption').textContent = tasks.length ? `${done.length} de ${tasks.length} tareas completadas. ${rate === 100 ? '¡Terminaste todo lo que registraste!' : 'Cada avance cuenta; sigue a tu ritmo.'}` : 'Agrega una tarea para comenzar a seguir tu avance.';
+    $('#clear-done').hidden = !done.length;
+  }
+  function renderCalendar() {
+    const year = calendarMonth.getFullYear(), month = calendarMonth.getMonth();
+    $('#month-label').textContent = new Intl.DateTimeFormat('es-CO',{month:'long',year:'numeric'}).format(calendarMonth);
+    const headings = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+    const offset = (new Date(year,month,1).getDay()+6)%7;
+    const start = new Date(year,month,1-offset);
+    let markup = headings.map(day => `<div class="calendar-weekday">${day}</div>`).join('');
+    for (let i=0;i<42;i++) {
+      const date = new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+      const key = localDay(date), dueTasks = tasks.filter(task => !task.done && task.due === key);
+      const isOverdue = key < localDay() && dueTasks.length > 0;
+      const classes = ['calendar-day',date.getMonth()!==month?'other':'',key===localDay()?'today':'',key===selectedDay?'selected':'',isOverdue?'has-overdue':''].filter(Boolean).join(' ');
+      markup += `<button type="button" class="${classes}" data-calendar-day="${key}" aria-label="${key}, ${dueTasks.length} tarea(s) pendiente(s)"><span class="day-number">${date.getDate()}</span>${dueTasks.length?`<span class="calendar-count">${dueTasks.length} tarea${dueTasks.length===1?'':'s'}</span>`:''}</button>`;
+    }
+    $('#calendar-grid').innerHTML = markup;
+    document.querySelectorAll('[data-calendar-day]').forEach(button => button.addEventListener('click',()=>{selectedDay=button.dataset.calendarDay;renderCalendar()}));
+    const selectedTasks = ordered(tasks.filter(task => !task.done && task.due === selectedDay));
+    $('#calendar-agenda').innerHTML = `<div class="agenda-heading">${selectedDay===localDay()?'Hoy':prettyDate(selectedDay)}</div>` + (selectedTasks.length ? selectedTasks.map(task=>`<div class="agenda-task ${task.due<localDay()?'overdue':''}"><i class="legend-dot ${task.due<localDay()?'red':task.due===localDay()?'gold':''}"></i><span>${esc(task.title)} · ${priorityName[task.priority]}</span></div>`).join('') : '<div class="agenda-empty">No tienes entregas pendientes para este día.</div>');
+  }
+  function visibleTasks() {
+    const term = $('#search').value.trim().toLocaleLowerCase('es');
+    return ordered(tasks.filter(task => (filter === 'all' || (filter === 'done' ? task.done : !task.done)) &&
+      (!term || `${task.title} ${task.category} ${task.notes}`.toLocaleLowerCase('es').includes(term))));
+  }
+  function render() {
+    stats();
+    renderCalendar();
+    const list = visibleTasks();
+    if (!list.length) {
+      const searching = $('#search').value.trim();
+      const emptyCopy = searching ? ['No encontramos resultados','Prueba con otra palabra o categoría.'] : filter === 'done' ? ['Tu historial está vacío','Cuando completes una tarea, la encontrarás aquí.'] : filter === 'all' ? ['Aún no tienes tareas','Agrega una tarea usando el formulario.'] : ['Todo despejado por ahora','Agrega una tarea para organizar tu siguiente paso.'];
+      $('#task-list').innerHTML = `<div class="empty"><div class="empty-icon">${searching ? '⌕' : '✦'}</div><strong>${emptyCopy[0]}</strong><span>${emptyCopy[1]}</span></div>`;
+      return;
+    }
+    $('#task-list').innerHTML = list.map(task => {
+      const state = dayState(task);
+      const dueLabel = task.due ? `<span class="pill ${state}">${state === 'overdue' ? 'Vencida · ' : state === 'today' ? 'Hoy · ' : ''}${esc(prettyDate(task.due))}</span>` : '<span class="pill">Sin fecha</span>';
+      const category = task.category ? `<span class="pill">${esc(task.category)}</span>` : '';
+      const estimate = task.estimate ? `<span class="pill">${task.estimate >= 60 ? `${task.estimate / 60} h` : `${task.estimate} min`}</span>` : '';
+      return `<article class="task ${task.done ? 'is-done' : ''}"><input class="check" type="checkbox" data-toggle="${esc(task.id)}" ${task.done ? 'checked' : ''} aria-label="${task.done ? 'Restaurar' : 'Completar'} ${esc(task.title)}"><div><div class="task-title">${esc(task.title)}</div>${task.notes ? `<div class="task-notes">${esc(task.notes)}</div>` : ''}<div class="task-meta">${dueLabel}<span class="pill ${task.priority}">${priorityName[task.priority]}</span>${category}${estimate}${task.done && task.completedAt ? `<span class="pill">Completada ${esc(prettyDate(task.completedAt.slice(0,10)))}</span>` : ''}</div></div><div class="task-actions"><button class="icon-button" data-edit="${esc(task.id)}" aria-label="Editar tarea ${esc(task.title)}" title="Editar">✎</button><button class="icon-button" data-delete="${esc(task.id)}" aria-label="Eliminar tarea ${esc(task.title)}" title="Eliminar">×</button></div></article>`;
+    }).join('');
+    document.querySelectorAll('[data-toggle]').forEach(input => input.addEventListener('change', () => toggleTask(input.dataset.toggle)));
+    document.querySelectorAll('[data-edit]').forEach(button => button.addEventListener('click', () => editTask(button.dataset.edit)));
+    document.querySelectorAll('[data-delete]').forEach(button => button.addEventListener('click', () => deleteTask(button.dataset.delete)));
+  }
+  function toggleTask(id) {
+    tasks = tasks.map(task => task.id === id ? {...task, done: !task.done, completedAt: task.done ? null : new Date().toISOString()} : task);
+    save(); notify(tasks.find(task => task.id === id)?.done ? 'Tarea completada y guardada en tu historial.' : 'Tarea restaurada a pendientes.');
+  }
+  function resetForm() { form.reset(); $('#priority').value = 'media'; editingId = null; $('#save-task').textContent = '＋ Agregar tarea'; $('#cancel-edit').hidden = true; $('#form-feedback').textContent = ''; }
+  function editTask(id) {
+    const task = tasks.find(item => item.id === id); if (!task) return;
+    editingId = id; $('#title').value = task.title; $('#due').value = task.due; $('#priority').value = task.priority; $('#category').value = task.category; $('#notes').value = task.notes; $('#estimate').value = task.estimate || '';
+    $('#save-task').textContent = 'Guardar cambios'; $('#cancel-edit').hidden = false; $('#form-feedback').textContent = 'Editando tarea'; $('#title').focus(); window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function deleteTask(id) {
+    const task = tasks.find(item => item.id === id); if (!task) return;
+    if (!window.confirm(`¿Eliminar "${task.title}"?`)) return;
+    tasks = tasks.filter(item => item.id !== id); if (editingId === id) resetForm(); save(); notify('Tarea eliminada.');
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault(); const title = $('#title').value.trim();
+    if (!title) { $('#title').focus(); return; }
+    const data = {title, due:$('#due').value, priority:$('#priority').value, category:$('#category').value.trim(), notes:$('#notes').value.trim(), estimate:$('#estimate').value ? Number($('#estimate').value) : ''};
+    if (data.due && data.due < '2000-01-01') { notify('Revisa la fecha límite.'); return; }
+    if (editingId) { tasks = tasks.map(task => task.id === editingId ? {...task,...data} : task); notify('Cambios guardados.'); }
+    else { tasks.push({id:makeId(),...data,done:false,createdAt:new Date().toISOString(),completedAt:null}); notify('Tarea agregada y guardada.'); }
+    save(); resetForm(); $('#title').focus();
+  });
+  $('#cancel-edit').addEventListener('click', resetForm);
+  document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+    filter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach(tab => { const active = tab === button; tab.classList.toggle('active',active); tab.setAttribute('aria-selected',String(active)); }); render();
+  }));
+  $('#search').addEventListener('input', render);
+  $('#export-btn').addEventListener('click', () => {
+    const pending = tasks.filter(task => !task.done).sort((a,b) => (a.due || '9999-12-31').localeCompare(b.due || '9999-12-31'));
+    const today = localDay();
+    const overdue = pending.filter(task => task.due && task.due < today).length;
+    const rows = pending.map(task => {
+      const priority = ({alta:'Alta',media:'Media',baja:'Baja'})[task.priority] || 'Media';
+      const due = task.due ? prettyDate(task.due) : 'Sin fecha límite';
+      const status = task.due && task.due < today ? 'Vencida' : task.due === today ? 'Vence hoy' : 'Pendiente';
+      return `<article class="pdf-task"><div class="pdf-task-top"><h2>${esc(task.title)}</h2><span class="pdf-priority ${priority.toLowerCase()}">${priority}</span></div><div class="pdf-meta"><span><b>Entrega:</b> ${esc(due)}</span><span><b>Estado:</b> ${status}</span>${task.category ? `<span><b>Materia:</b> ${esc(task.category)}</span>` : ''}${task.estimate ? `<span><b>Tiempo estimado:</b> ${esc(String(task.estimate))} min</span>` : ''}</div>${task.notes ? `<p class="pdf-notes">${esc(task.notes)}</p>` : ''}</article>`;
+    }).join('');
+    const report = $('#pdf-report');
+    report.innerHTML = `<header class="pdf-header"><div class="pdf-brand">PLANIFIC<span>IA</span></div><p>ASISTENTE ACADÉMICO · CORHUILA</p><h1>Informe de tareas pendientes</h1><div class="pdf-date">Generado el ${esc(new Intl.DateTimeFormat('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date()))}</div></header><section class="pdf-summary"><div><strong>${pending.length}</strong><span>Tareas pendientes</span></div><div><strong>${overdue}</strong><span>Vencidas</span></div><div><strong>${pending.filter(task => task.priority === 'alta').length}</strong><span>Prioridad alta</span></div></section>${pending.length ? `<div class="pdf-list">${rows}</div>` : '<div class="pdf-empty">No hay tareas pendientes. ¡Todo está al día!</div>'}<footer class="pdf-footer">PlanificaIA · Tu espacio de estudio</footer>`;
+    window.print();
+  });
+  window.addEventListener('afterprint', () => { $('#pdf-report').innerHTML = ''; });
+  $('#clear-done').addEventListener('click', () => { $('#confirm-modal').hidden = false; $('#keep-done').focus(); });
+  $('#keep-done').addEventListener('click', () => { $('#confirm-modal').hidden = true; $('#clear-done').focus(); });
+  $('#confirm-clear').addEventListener('click', () => { tasks = tasks.filter(task => !task.done); save(); $('#confirm-modal').hidden = true; notify('Historial de tareas completadas eliminado.'); });
+  $('#confirm-modal').addEventListener('click', event => { if (event.target.id === 'confirm-modal') $('#confirm-modal').hidden = true; });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('#confirm-modal').hidden) $('#confirm-modal').hidden = true; });
+  $('#month-prev').addEventListener('click',()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);renderCalendar()});
+  $('#month-next').addEventListener('click',()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);renderCalendar()});
+  function markdown(text) { return esc(text).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/^#{1,6}\s*(.+)$/gm,'<strong>$1</strong>').replace(/^\s*[-*•]\s+/gm,'• '); }
+  const chatLog=$('#chat-log'), chatInput=$('#chat-input'), sendButton=$('#send'), micButton=$('#mic'), micNote=$('#mic-note'), speakToggle=$('#speak');
+  let chatHistory=[], chatBusy=false;
+  function addChat(kind,text,actions=[]) {
+    const bubble=document.createElement('div'); bubble.className=`chat-message ${kind}`; bubble.innerHTML=markdown(text);
+    for(const action of actions){
+      const detail=[action.fecha_limite?prettyDate(action.fecha_limite):null,action.prioridad?`prioridad ${action.prioridad}`:null].filter(Boolean).join(', ');
+      const chip=document.createElement('span'); chip.className=`action-chip ${action.tipo==='creada'?'':'mod'}`;
+      chip.textContent=`${action.tipo==='creada'?'✓ Tarea creada':action.tipo==='completada'?'✓ Completada':'✓ Actualizada'}: ${action.titulo}${detail&&action.tipo!=='completada'?` (${detail})`:''}`; bubble.appendChild(chip);
+    }
+    chatLog.appendChild(bubble); chatLog.scrollTop=chatLog.scrollHeight; return bubble;
+  }
+  function say(text) { try { if(!speakToggle.checked||!('speechSynthesis' in window))return; speechSynthesis.cancel(); const utterance=new SpeechSynthesisUtterance(text.replace(/[*#]/g,'')); utterance.lang='es-CO'; speechSynthesis.speak(utterance); } catch {} }
+  function applyChatTasks(serverTasks) {
+    const previous=new Map(tasks.map(task=>[task.id,task]));
+    tasks=serverTasks.map(item=>{const old=previous.get(item.id)||{}; const done=item.estado==='completada'; return {...old,id:item.id,title:item.titulo,due:item.fecha_limite||'',priority:item.prioridad,done,createdAt:old.createdAt||new Date().toISOString(),completedAt:done?(old.completedAt||new Date().toISOString()):null};});
+    save();
+  }
+  async function sendChat(text) {
+    text=(text||'').trim(); if(!text||chatBusy)return;
+    chatBusy=true; sendButton.disabled=true; chatInput.value=''; addChat('user',text); chatHistory.push({role:'user',content:text});
+    const waiting=addChat('agent wait','Pensando…'); let timer;
+    try {
+      const controller=new AbortController(); timer=setTimeout(()=>controller.abort(),90000);
+      const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify({hoy:localDay(),mensajes:chatHistory.slice(-12),tareas:tasks.filter(task=>!task.done).map(task=>({id:task.id,titulo:task.title,fecha_limite:task.due||'',prioridad:task.priority}))})});
+      let data={}; try{data=await response.json()}catch{}
+      if(!response.ok)throw new Error(data.error||`Error ${response.status}`);
+      waiting.remove(); chatHistory.push({role:'assistant',content:data.respuesta});
+      if(data.acciones?.length)applyChatTasks(data.tareas||[]);
+      addChat('agent',data.respuesta,data.acciones||[]); say(data.respuesta);
+    } catch(error) {
+      waiting.remove(); if(chatHistory.at(-1)?.role==='user')chatHistory.pop();
+      addChat('error',`${error.name==='AbortError'?'El agente tardó demasiado en responder.':error.message||'No hay conexión con el servidor.'} Puedes intentar de nuevo o registrar la tarea con el formulario.`);
+    } finally { clearTimeout(timer); chatBusy=false; sendButton.disabled=false; chatInput.focus(); }
+  }
+  sendButton.addEventListener('click',()=>sendChat(chatInput.value));
+  chatInput.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();sendChat(chatInput.value)}});
+  document.querySelectorAll('[data-sug]').forEach(button=>button.addEventListener('click',()=>sendChat(button.dataset.sug)));
+  addChat('agent','Hola, soy PlanificaIA. Cuéntame qué tienes pendiente y puedo crear la tarea, preguntarte lo que falte o ayudarte a priorizar. Puedes escribirme o usar el micrófono.');
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){micButton.disabled=true;micButton.title='Este navegador no permite dictado por voz';micNote.textContent='Para dictar, abre el sitio en Chrome o Edge. También puedes escribir tu mensaje.';}
+  else {
+    const recognizer=new SpeechRecognition(); recognizer.lang='es-CO'; recognizer.interimResults=true; recognizer.continuous=false; recognizer.maxAlternatives=1; let listening=false, finalText='';
+    const stopListening=()=>{listening=false;micButton.classList.remove('listening');micButton.setAttribute('aria-label','Dictar por voz')};
+    recognizer.onstart=()=>{listening=true;finalText='';micButton.classList.add('listening');micButton.setAttribute('aria-label','Detener dictado');micNote.textContent='Escuchando… habla ahora.'};
+    recognizer.onresult=event=>{let interim='';for(let i=event.resultIndex;i<event.results.length;i++){const value=event.results[i][0].transcript;if(event.results[i].isFinal)finalText+=value;else interim+=value}chatInput.value=(finalText+interim).trim()};
+    recognizer.onerror=event=>{const messages={'not-allowed':'Permite el uso del micrófono desde el candado de la barra de direcciones.','service-not-allowed':'El navegador no permite dictado en esta página.','no-speech':'No te escuché. Pulsa el micrófono e intenta de nuevo.','audio-capture':'No se detectó ningún micrófono.','network':'No se pudo conectar con el servicio de voz del navegador.'};micNote.textContent=messages[event.error]||`No se pudo dictar (${event.error}).`;};
+    recognizer.onend=()=>{stopListening();const value=finalText.trim();if(value){micNote.textContent='';sendChat(value)}};
+    micButton.addEventListener('click',()=>{if(chatBusy)return;if(listening){recognizer.stop();return}if(window.speechSynthesis)speechSynthesis.cancel();try{recognizer.start()}catch{}});
+  }
+  $('#today-label').textContent = new Intl.DateTimeFormat('es-CO',{weekday:'long',day:'numeric',month:'long'}).format(new Date()).replace(/^./,char => char.toLocaleUpperCase('es'));
+  fetch('/api/estado').then(response => response.ok ? response.json() : Promise.reject()).then(status => {
+    $('#ai-status').textContent = status.ia_configurada ? 'IA Groq activa' : 'IA sin configurar';
+    $('#ai-status').classList.toggle('badge-error',!status.ia_configurada);
+  }).catch(() => { $('#ai-status').textContent = 'Servidor sin conexión'; $('#ai-status').classList.add('badge-error'); });
+  tasks = load(); render();
+})();
+</script>
+</body>
+</html>
+
