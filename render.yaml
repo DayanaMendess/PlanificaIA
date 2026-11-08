@@ -1,0 +1,17 @@
+# Blueprint de Render: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: planificaia
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python web_app.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: GROQ_API_KEY
+        sync: false          # se escribe en el panel de Render; nunca en el repositorio
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+
