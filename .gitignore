@@ -1,0 +1,8 @@
+.env
+tareas.json
+informe/render/
+informe/evidencias/demo_tasks.json
+__pycache__/
+*.py[cod]
+.edgeprofile/
+
